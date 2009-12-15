@@ -1,4 +1,4 @@
-require 'data_mapper/data_mapper_generator'
+#require 'data_mapper/data_mapper_generator'
 require 'rails/generators/named_base'
 
 module DataMapper
