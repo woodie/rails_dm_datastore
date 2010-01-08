@@ -5,8 +5,6 @@
 
   Array(DataMapper::Property::PRIMITIVES).collect{|i| i.to_s}|DataMapper::Types.constants
   unless (Array(DataMapper::Property::PRIMITIVES).collect{|i| i.to_s}|DataMapper::Types.constants).include? attribute.type.to_s
-    puts "I am here"
-
     raise "unknown property type '#{attribute.type}'"
   end
   
