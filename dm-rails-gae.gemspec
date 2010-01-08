@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dm-rails-gae}
-  s.version = "0.0.5"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["joshsmoore"]
-  s.date = %q{2009-12-19}
+  s.date = %q{2010-01-08}
   s.description = %q{Integrate datamapper to rails3 for the Google App Engine}
   s.email = %q{joshsmoore@gmail.com}
   s.extra_rdoc_files = [
@@ -28,6 +28,9 @@ Gem::Specification.new do |s|
      "generators/data_mapper/model/model_generator.rb",
      "generators/data_mapper/model/templates/model.rb",
      "generators/data_mapper/templates/model.rb",
+     "generators/dm_model/dm_model_generator.rb",
+     "generators/dm_model/templates/model.rb",
+     "generators/dm_model/templates/unit_test.rb",
      "lib/USAGE",
      "lib/dm-rails-gae.rb",
      "lib/generators/data_mapper/USAGE",
