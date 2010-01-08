@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "dm-rails-gae"
+    gem.name = "rails_dm_datastore"
     gem.summary = %Q{Generators for dm on gae}
     gem.description = %Q{Integrate datamapper to rails3 for the Google App Engine}
     gem.email = "joshsmoore@gmail.com"
