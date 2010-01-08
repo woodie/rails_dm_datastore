@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dm-rails-gae}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["joshsmoore"]
@@ -24,10 +24,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "dm-rails-gae.gemspec",
-     "generators/data_mapper/USAGE",
-     "generators/data_mapper/model/model_generator.rb",
-     "generators/data_mapper/model/templates/model.rb",
-     "generators/data_mapper/templates/model.rb",
      "generators/dm_model/dm_model_generator.rb",
      "generators/dm_model/templates/model.rb",
      "generators/dm_model/templates/unit_test.rb",
