@@ -1,4 +1,8 @@
-# patch for -- dm-core 0.10.2 & rails 2.3.5
+require 'dm-core'
+require 'dm-ar-finders'
+require 'dm-timestamps'
+require 'dm-validations'
+DataMapper.setup(:default, "appengine://auto")
 
 module DataMapper
   module Resource

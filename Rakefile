@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'rake'
 
+RAILS_VERSION = "2.3.5"
+DM_VERSION = "0.10.2"
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
@@ -11,6 +14,13 @@ begin
     gem.homepage = "http://github.com/joshsmoore/dm-rails-gae"
     gem.authors = ["joshsmoore"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency 'rails', RAILS_VERSION
+    gem.add_dependency 'dm-core', DM_VERSION
+    gem.add_dependency 'dm-ar-finders', DM_VERSION
+    gem.add_dependency 'dm-timestamps', DM_VERSION
+    gem.add_dependency 'dm-validations', DM_VERSION
+    gem.add_dependency 'dm-appengine'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
