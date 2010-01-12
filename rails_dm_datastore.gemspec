@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_dm_datastore}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["joshsmoore"]
@@ -28,11 +28,11 @@ Gem::Specification.new do |s|
      "generators/dm_model/templates/model.rb",
      "generators/dm_model/templates/unit_test.rb",
      "lib/USAGE",
-     "lib/dm-rails-gae.rb",
      "lib/generators/data_mapper/USAGE",
      "lib/generators/data_mapper/model/model_generator.rb",
      "lib/generators/data_mapper/model/templates/model.rb",
      "lib/generators/data_mapper/templates/model.rb",
+     "lib/rails_dm_datastore.rb",
      "rails_dm_datastore.gemspec",
      "test/helper.rb",
      "test/test_dm-rails-gae.rb"
@@ -53,11 +53,32 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, ["= 2.3.5"])
+      s.add_runtime_dependency(%q<dm-core>, ["= 0.10.2"])
+      s.add_runtime_dependency(%q<dm-ar-finders>, ["= 0.10.2"])
+      s.add_runtime_dependency(%q<dm-timestamps>, ["= 0.10.2"])
+      s.add_runtime_dependency(%q<dm-validations>, ["= 0.10.2"])
+      s.add_runtime_dependency(%q<dm-appengine>, [">= 0"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<rails>, ["= 2.3.5"])
+      s.add_dependency(%q<dm-core>, ["= 0.10.2"])
+      s.add_dependency(%q<dm-ar-finders>, ["= 0.10.2"])
+      s.add_dependency(%q<dm-timestamps>, ["= 0.10.2"])
+      s.add_dependency(%q<dm-validations>, ["= 0.10.2"])
+      s.add_dependency(%q<dm-appengine>, [">= 0"])
     end
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<rails>, ["= 2.3.5"])
+    s.add_dependency(%q<dm-core>, ["= 0.10.2"])
+    s.add_dependency(%q<dm-ar-finders>, ["= 0.10.2"])
+    s.add_dependency(%q<dm-timestamps>, ["= 0.10.2"])
+    s.add_dependency(%q<dm-validations>, ["= 0.10.2"])
+    s.add_dependency(%q<dm-appengine>, [">= 0"])
   end
 end
 
