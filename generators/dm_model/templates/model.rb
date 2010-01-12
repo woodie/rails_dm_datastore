@@ -1,25 +1,30 @@
-<% max = min = 10 -%>
+<% max = 2
+   reserved_dm_names = DataMapper::Resource.instance_methods +
+                       DataMapper::Resource.private_instance_methods 
+   datastore_types = %w(AncestorKey BigDecimal Blob Boolean ByteString
+       Category Class Date DateTime Email Float Integer Key Link Object 
+       PhoneNumber PostalAddres Rating String Text Time TrueClass) -%>
 <% Array(attributes).each do |attribute|
-  max = attribute.name.size if max < attribute.name.size
-  min = attribute.name.size if min > attribute.name.size
-
-  Array(DataMapper::Property::PRIMITIVES).collect{|i| i.to_s}|DataMapper::Types.constants
-  unless (Array(DataMapper::Property::PRIMITIVES).collect{|i| i.to_s}|DataMapper::Types.constants).include? attribute.type.to_s
-    raise "unknown property type '#{attribute.type}'"
-  end
-  
-  max += 1
-end
--%>
+     if reserved_dm_names.include? attribute.name
+       raise "reserved property name '#{attribute.name}'"
+     elsif !datastore_types.include? attribute.type.to_s.classify
+       raise "unknown property type '#{attribute.type}'"
+     end
+     max = attribute.name.size if attribute.name.size > max -%>
+<% end -%>
 class <%= class_name %>
   include DataMapper::Resource
   
-  property :id,<%= " " * (max - 2) %>Serial
-<% Array(attributes).each do |attribute| -%>
-  property :<%= attribute.name %>,<%= " " * (max - attribute.name.size) %><%= attribute.type %>
+  property :id,<%= " " * (max - 2) %> Serial
+<% Array(attributes).each do |attribute|
+     klass = attribute.type.to_s.classify.to_s
+     klass += 's' if klass.eql? 'PostalAddres' # classify bug
+     pad = max - attribute.name.size
+     rad = 13 - klass.size
+     %>  property :<%= attribute.name %>, <%= " " * pad
+     %><%= "#{klass}" %>, <%= " " * rad %>:nullable => false
 <% end -%>
 <% unless options[:skip_timestamps] -%>
-  property :created_at, <%= " " * (max - 11) %>DateTime
-  property :updated_at, <%= " " * (max - 11) %>DateTime
+  timestamps :at 
 <% end -%>
 end
