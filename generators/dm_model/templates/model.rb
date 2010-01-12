@@ -4,6 +4,7 @@
    datastore_types = %w(AncestorKey BigDecimal Blob Boolean ByteString
        Category Class Date DateTime Email Float Integer Key Link Object 
        PhoneNumber PostalAddres Rating String Text Time TrueClass) -%>
+   presets = {'Text' => ':lazy => false', 'String' => ':length => 500'}
 <% Array(attributes).each do |attribute|
      if reserved_dm_names.include? attribute.name
        raise "reserved property name '#{attribute.name}'"
@@ -19,10 +20,11 @@ class <%= class_name %>
 <% Array(attributes).each do |attribute|
      klass = attribute.type.to_s.classify.to_s
      klass += 's' if klass.eql? 'PostalAddres' # classify bug
+     more = presets.has_key? klass ? ", #{presets[klass]}" : ''
      pad = max - attribute.name.size
      rad = 13 - klass.size
      %>  property :<%= attribute.name %>, <%= " " * pad
-     %><%= "#{klass}" %>, <%= " " * rad %>:nullable => false
+     %><%= "#{klass}" %>, <%= " " * rad %>:required => true<%= more %>
 <% end -%>
 <% unless options[:skip_timestamps] -%>
   timestamps :at 
