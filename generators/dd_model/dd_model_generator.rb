@@ -2,7 +2,7 @@ require 'rails_generator/generators/components/model/model_generator'
 require 'active_record'
 require 'dm-core'
  
-class DmModelGenerator < ModelGenerator
+class DdModelGenerator < ModelGenerator
  
   def manifest
     record do |m|

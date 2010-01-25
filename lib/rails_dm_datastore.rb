@@ -4,7 +4,7 @@ require 'dm-ar-finders'
 require 'dm-timestamps'
 require 'dm-validations'
 DataMapper.setup(:default, "appengine://auto")
-
+#DataMapper.setup(:ephemeral, "in_memory::")
 module DataMapper
   module Resource
     # avoid object references in URLs
@@ -19,20 +19,43 @@ end
 # DataMapper::Validate
 class Dictionary; alias count length; end
  
+ 
+ #Override Extlib::Hook::ClassMethods.inline_call to check in the given weak reference
+
+module LocalObjectSpace
+  def self.extended(klass)
+    (class << klass; self;end).send :attr_accessor, :hook_scopes
+   
+    klass.hook_scopes = []
+  end
+  
+  def object_by_id(object_id)
+    self.hook_scopes.each do |object|
+      return object if object.object_id == object_id
+    end
+  end
+  
+end
+ 
 module Extlib
   module Hook
     module ClassMethods
+      
+      extend LocalObjectSpace
+        
+      #end
+      
       def inline_call(method_info, scope)
+        Extlib::Hook::ClassMethods.hook_scopes << method_info[:from]
         name = method_info[:name]
+        
         if scope == :instance
-          args = method_defined?(name) &&
-              instance_method(name).arity != 0 ? '*args' : ''
+          args = method_defined?(name) && instance_method(name).arity != 0 ? '*args' : ''
+          %(#{name}(#{args}) if self.class <= Extlib::Hook::ClassMethods.object_by_id(#{method_info[:from].object_id}))
         else
-          args = respond_to?(name) &&
-              method(name).arity != 0 ? '*args' : ''
+          args = respond_to?(name) && method(name).arity != 0 ? '*args' : ''
+          %(#{name}(#{args}) if self <= Extlib::Hook::ClassMethods.object_by_id(#{method_info[:from].object_id}))
         end
-        # ObjectSpace._id2ref should be replaced with WeakRef
-        %(#{name}(#{args})) # Always call hook... set_timestamps_on_save()
       end
     end
   end
