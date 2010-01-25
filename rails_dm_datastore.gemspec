@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_dm_datastore}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["joshsmoore"]
-  s.date = %q{2010-01-14}
+  s.date = %q{2010-01-25}
   s.description = %q{Integrate datamapper to Rails for the Google App Engine}
   s.email = %q{joshsmoore@gmail.com}
   s.extra_rdoc_files = [
@@ -24,18 +24,15 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "dm-rails-gae.gemspec",
-     "generators/dm_model/dm_model_generator.rb",
-     "generators/dm_model/templates/model.rb",
-     "generators/dm_model/templates/unit_test.rb",
-     "lib/USAGE",
-     "lib/generators/data_mapper/USAGE",
-     "lib/generators/data_mapper/model/model_generator.rb",
-     "lib/generators/data_mapper/model/templates/model.rb",
-     "lib/generators/data_mapper/templates/model.rb",
+     "generators/dd_model/USAGE",
+     "generators/dd_model/dd_model_generator.rb",
+     "generators/dd_model/templates/model.rb",
+     "generators/dd_model/templates/unit_test.rb",
      "lib/rails_dm_datastore.rb",
      "rails_dm_datastore.gemspec",
      "test/helper.rb",
-     "test/test_dm-rails-gae.rb"
+     "test/test_dm-rails-gae.rb",
+     "test/test_weak_reference.rb"
   ]
   s.homepage = %q{http://github.com/joshsmoore/dm-rails-gae}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -44,7 +41,8 @@ Gem::Specification.new do |s|
   s.summary = %q{Generators for dm on gae}
   s.test_files = [
     "test/helper.rb",
-     "test/test_dm-rails-gae.rb"
+     "test/test_dm-rails-gae.rb",
+     "test/test_weak_reference.rb"
   ]
 
   if s.respond_to? :specification_version then
