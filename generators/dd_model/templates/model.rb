@@ -3,8 +3,8 @@
    reserved_dm_names = DataMapper::Resource.instance_methods +
                        DataMapper::Resource.private_instance_methods 
    datastore_types = %w(AncestorKey BigDecimal Blob Boolean ByteString
-       Category Class Date DateTime Email Float Integer Key Link Object 
-       PhoneNumber PostalAddres Rating String Text Time TrueClass) -%>
+       Category Class Date DateTime Email Float Integer Key Link List Object 
+       PhoneNumber PostalAddres Rating String Text Time TrueClass User) -%>
 <% Array(attributes).each do |attribute|
      if reserved_dm_names.include? attribute.name
        raise "reserved property name '#{attribute.name}'"
