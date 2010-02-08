@@ -5,14 +5,55 @@ require 'dm-timestamps'
 require 'dm-validations'
 DataMapper.setup(:default, "appengine://auto")
 #DataMapper.setup(:ephemeral, "in_memory::")
+
+#convert the date from the date picker to an actual date class that the datastore can actually store
+def fix_date(hash, property, type)
+  total_attributes = 0
+  if Date == type
+    total_attributes = 3
+  else
+    total_attributes = 5
+  end
+  
+  time_string = ""
+  1.upto(total_attributes) do |n|
+    if n == 1
+      time_string << hash[:"#{property}(#{n}i)"]
+    elsif n > 1 && n <= 3
+      time_string << '-' + hash[:"#{property}(#{n}i)"]
+    elsif n == 4
+      time_string << ' ' + hash[:"#{property}(#{n}i)"]
+    elsif n > 4
+      time_string << ':' + hash[:"#{property}(#{n}i)"]
+    end
+    hash.delete :"#{property}(#{n}i)"
+  end
+
+  hash[property] = type.parse(time_string).send("to_#{type.to_s.downcase}")
+  hash
+end
+
 module DataMapper
   module Resource
+    alias :attributes_orig= :attributes=
     # avoid object references in URLs
     def to_param; id.to_s; end
     # silence deprecation warnings
     def new_record?; new?; end
     # avoid NoMethodError
     def update_attributes(*args); update(*args); end
+    
+    #make sure that all properties of the model that have to do with date or time are converted run through
+    # the fix_date converter
+    def attributes=(attributes)
+      self.class.properties.each do |t| 
+        if !(t.name.to_s =~ /.*_at/) && (t.type.to_s =~ /Date/ || t.type.to_s =~ /Time/ ) && 
+          attributes.include?("#{t.name.to_s}(1i)")
+          fix_date(attributes, t.name.to_s, t.type) 
+        end
+      end 
+      self.attributes_orig=(attributes)
+    end
   end
 end
 
@@ -77,5 +118,46 @@ module ActionView
       end
     end
   
+  end
+end
+
+
+# provided by John Woodell mando.woodie@gmail.com to fix problems with date conversion
+module ActiveSupport #:nodoc:
+  module CoreExtensions #:nodoc:
+    module String #:nodoc:
+      # Converting strings to other objects
+      module Conversions
+        # 'a'.ord == 'a'[0] for Ruby 1.9 forward compatibility.
+        def ord
+          self[0]
+        end if RUBY_VERSION < '1.9'
+
+        # Form can be either :utc (default) or :local.
+        def to_time(form = :utc)
+          begin
+            ::Time.send("#{form}_time", *::Date._parse(self, false).values_at(:year, :mon, :mday, :hour, :min, :sec).map { |arg| arg || 0 })
+          rescue
+            nil
+          end
+        end
+
+        def to_date
+          begin
+            ::Date.new(*::Date._parse(self, false).values_at(:year, :mon, :mday))
+          rescue
+            nil
+          end
+        end
+
+        def to_datetime
+          begin
+            ::DateTime.civil(*::Date._parse(self, false).values_at(:year, :mon, :mday, :hour, :min, :sec).map { |arg| arg || 0 })
+          rescue
+            nil
+          end
+        end
+      end
+    end
   end
 end
