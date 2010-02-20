@@ -5,8 +5,13 @@ require 'dm-timestamps'
 require 'dm-validations'
 DataMapper.setup(:default, "appengine://auto")
 
-require 'rails_dm_datastore/action_view_partials'
-require 'rails_dm_datastore/active_support_conversions'
-require 'rails_dm_datastore/datamapper_resource'
-require 'rails_dm_datastore/datamapper_validate'
-require 'rails_dm_datastore/extlib_hook'
+require 'rails_dm_datastore/multiparameter_assignments'
+require 'rails_dm_datastore/data_mapper'
+require 'rails_dm_datastore/local_object_space'
+require 'rails_dm_datastore/extlib'
+require 'rails_dm_datastore/action_view'
+require 'rails_dm_datastore/active_support'
+
+# DataMapper::Validate
+class Dictionary; alias count length; end
+

@@ -1,25 +1,24 @@
-<% max = 2
-   presets = {'Text' => ':lazy => false', 'String' => ':length => 500'}
-   reserved_dm_names = DataMapper::Resource.instance_methods +
-                       DataMapper::Resource.private_instance_methods 
-   datastore_types = %w(AncestorKey BigDecimal Blob Boolean ByteString
-       Category Class Date DateTime Email Float Integer Key Link List Object 
-       PhoneNumber PostalAddres Rating String Text Time TrueClass User) -%>
-<% Array(attributes).each do |attribute|
-     if reserved_dm_names.include? attribute.name
-       raise "reserved property name '#{attribute.name}'"
-     elsif !datastore_types.include? attribute.type.to_s.classify
-       raise "unknown property type '#{attribute.type}'"
-     end
-     max = attribute.name.size if attribute.name.size > max -%>
-<% end -%>
 class <%= class_name %>
+<% max = 2
+  presets = {'Text' => ':lazy => false', 'String' => ':length => 500'}
+  reserved_dm_names = DataMapper::Resource.instance_methods +
+      DataMapper::Resource.private_instance_methods 
+  datastore_types  = (DataMapper::Property::PRIMITIVES +
+      DataMapper::Types.constants.map{|c| DataMapper::Types.const_get(c)}.
+      select{|t| t.respond_to? :primitive}).map {|c| c.to_s.split('::')[-1]}
+  Array(attributes).each do |attribute|
+    if reserved_dm_names.include? attribute.name
+      raise "reserved property name '#{attribute.name}'"
+    elsif !datastore_types.include? attribute.type.to_s.camelcase
+      raise "unknown property type '#{attribute.type}'"
+    end
+    max = attribute.name.size if attribute.name.size > max -%>
+  end -%>
   include DataMapper::Resource
   
   property :id,<%= " " * (max - 2) %> Serial
 <% Array(attributes).each do |attribute|
-     klass = attribute.type.to_s.classify.to_s
-     klass += 's' if klass.eql? 'PostalAddres' # classify bug
+     klass = attribute.type.to_s.camelcase
      more = presets.has_key?(klass) ? ", #{presets[klass]}" : ''
      pad = max - attribute.name.size
      rad = 13 - klass.size

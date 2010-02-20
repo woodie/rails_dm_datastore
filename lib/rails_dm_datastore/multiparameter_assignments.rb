@@ -1,7 +1,7 @@
 # Convert the values from the date and time picker
 # to a date or time class that the datastore can accept
 module MultiparameterAssignments
-  def fix_date(hash, property, type)
+  def self.fix_date(hash, property, type)
     total_attributes = 0
     if Date == type
       total_attributes = 3

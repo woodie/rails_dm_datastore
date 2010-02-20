@@ -11,7 +11,7 @@ begin
     gem.description = %Q{Integrate datamapper to Rails for the Google App Engine}
     gem.email = ["joshsmoore@gmail.com", "woodie@netpress.com"]
     gem.homepage = "http://github.com/joshsmoore/dm-rails-gae"
-    gem.authors = ["joshsmoore", "John Woodell"]
+    gem.authors = ["Josh S Moore", "John Woodell"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_dependency 'dm-core', DM_VERSION

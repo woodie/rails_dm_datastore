@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_dm_datastore}
-  s.version = "0.2.4"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["joshsmoore"]
-  s.date = %q{2010-02-08}
+  s.authors = ["Josh S Moore", "John Woodell"]
+  s.date = %q{2010-02-20}
   s.description = %q{Integrate datamapper to Rails for the Google App Engine}
-  s.email = %q{joshsmoore@gmail.com}
+  s.email = ["joshsmoore@gmail.com", "woodie@netpress.com"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -23,12 +23,17 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "dm-rails-gae.gemspec",
      "generators/dd_model/USAGE",
      "generators/dd_model/dd_model_generator.rb",
      "generators/dd_model/templates/model.rb",
      "generators/dd_model/templates/unit_test.rb",
      "lib/rails_dm_datastore.rb",
+     "lib/rails_dm_datastore/action_view.rb",
+     "lib/rails_dm_datastore/active_support.rb",
+     "lib/rails_dm_datastore/data_mapper.rb",
+     "lib/rails_dm_datastore/extlib.rb",
+     "lib/rails_dm_datastore/local_object_space.rb",
+     "lib/rails_dm_datastore/multiparameter_assignments.rb",
      "rails_dm_datastore.gemspec",
      "test/helper.rb",
      "test/test_dm-rails-gae.rb",
