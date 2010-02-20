@@ -45,8 +45,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Generators for dm on gae}
   s.test_files = [
-    "test/helper.rb",
-     "test/test_dm-rails-gae.rb",
+    "test/test_dm-rails-gae.rb",
+     "test/helper.rb",
      "test/test_weak_reference.rb"
   ]
 
