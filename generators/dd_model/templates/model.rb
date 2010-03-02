@@ -3,16 +3,13 @@ class <%= class_name %>
   presets = {'Text' => ':lazy => false', 'String' => ':length => 500'}
   reserved_dm_names = DataMapper::Resource.instance_methods +
       DataMapper::Resource.private_instance_methods 
-  datastore_types  = (DataMapper::Property::PRIMITIVES +
-      DataMapper::Types.constants.map{|c| DataMapper::Types.const_get(c)}.
-      select{|t| t.respond_to? :primitive}).map {|c| c.to_s.split('::')[-1]}
   Array(attributes).each do |attribute|
     if reserved_dm_names.include? attribute.name
       raise "reserved property name '#{attribute.name}'"
-    elsif !datastore_types.include? attribute.type.to_s.camelcase
+    elsif !DdModelGenerator::VALID_TYPES.include? attribute.type.to_s.camelcase
       raise "unknown property type '#{attribute.type}'"
     end
-    max = attribute.name.size if attribute.name.size > max -%>
+    max = attribute.name.size if attribute.name.size > max
   end -%>
   include DataMapper::Resource
   

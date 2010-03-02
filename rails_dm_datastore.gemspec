@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_dm_datastore}
-  s.version = "0.2.5"
+  s.version = "0.2.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Josh S Moore", "John Woodell"]
-  s.date = %q{2010-02-20}
+  s.date = %q{2010-03-01}
   s.description = %q{Integrate datamapper to Rails for the Google App Engine}
   s.email = ["joshsmoore@gmail.com", "woodie@netpress.com"]
   s.extra_rdoc_files = [
@@ -29,11 +29,9 @@ Gem::Specification.new do |s|
      "generators/dd_model/templates/unit_test.rb",
      "lib/rails_dm_datastore.rb",
      "lib/rails_dm_datastore/action_view.rb",
-     "lib/rails_dm_datastore/active_support.rb",
      "lib/rails_dm_datastore/data_mapper.rb",
      "lib/rails_dm_datastore/extlib.rb",
      "lib/rails_dm_datastore/local_object_space.rb",
-     "lib/rails_dm_datastore/multiparameter_assignments.rb",
      "rails_dm_datastore.gemspec",
      "test/helper.rb",
      "test/test_dm-rails-gae.rb",
@@ -42,11 +40,11 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/joshsmoore/dm-rails-gae}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Generators for dm on gae}
   s.test_files = [
-    "test/test_dm-rails-gae.rb",
-     "test/helper.rb",
+    "test/helper.rb",
+     "test/test_dm-rails-gae.rb",
      "test/test_weak_reference.rb"
   ]
 
@@ -62,6 +60,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<dm-timestamps>, ["= 0.10.2"])
       s.add_runtime_dependency(%q<dm-validations>, ["= 0.10.2"])
       s.add_runtime_dependency(%q<dm-appengine>, [">= 0"])
+      s.add_runtime_dependency(%q<rails_appengine>, [">= 0"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
@@ -70,6 +69,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<dm-timestamps>, ["= 0.10.2"])
       s.add_dependency(%q<dm-validations>, ["= 0.10.2"])
       s.add_dependency(%q<dm-appengine>, [">= 0"])
+      s.add_dependency(%q<rails_appengine>, [">= 0"])
     end
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
@@ -79,6 +79,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<dm-timestamps>, ["= 0.10.2"])
     s.add_dependency(%q<dm-validations>, ["= 0.10.2"])
     s.add_dependency(%q<dm-appengine>, [">= 0"])
+    s.add_dependency(%q<rails_appengine>, [">= 0"])
   end
 end
 

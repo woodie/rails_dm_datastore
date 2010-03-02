@@ -12,6 +12,10 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
+== Build the gem
+  rake gemspec
+  rake build
+
 == Copyright
 
 Copyright (c) 2009 joshsmoore. See LICENSE for details.
