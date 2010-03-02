@@ -19,6 +19,7 @@ begin
     gem.add_dependency 'dm-timestamps', DM_VERSION
     gem.add_dependency 'dm-validations', DM_VERSION
     gem.add_dependency 'dm-appengine'
+    gem.add_dependency 'rails_appengine'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
