@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_dm_datastore}
-  s.version = "0.2.6"
+  s.version = "0.2.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Josh S Moore", "John Woodell"]
-  s.date = %q{2010-03-01}
+  s.date = %q{2010-03-04}
   s.description = %q{Integrate datamapper to Rails for the Google App Engine}
   s.email = ["joshsmoore@gmail.com", "woodie@netpress.com"]
   s.extra_rdoc_files = [
