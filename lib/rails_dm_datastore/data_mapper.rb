@@ -12,6 +12,7 @@ module DataMapper
     # make sure that all properties of the model that have to do with
     # date or time are converted run through the fix_date converter
     def attributes=(attributes)
+      return if attributes.nil?
       self.class.properties.each do |t|
         if !(t.name.to_s =~ /.*_at/) && (t.type.to_s =~ /Date|Time/ ) &&
             attributes.include?("#{t.name.to_s}(1i)")
