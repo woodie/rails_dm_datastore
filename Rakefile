@@ -7,10 +7,10 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rails_dm_datastore"
-    gem.summary = %Q{Generators for dm on gae}
+    gem.summary = %Q{Generators for dm on App Engine}
     gem.description = %Q{Integrate datamapper to Rails for the Google App Engine}
     gem.email = ["joshsmoore@gmail.com", "woodie@netpress.com"]
-    gem.homepage = "http://github.com/joshsmoore/dm-rails-gae"
+    gem.homepage = "http://github.com/joshsmoore/rails_dm_datastore"
     gem.authors = ["Josh S Moore", "John Woodell"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
@@ -56,7 +56,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "dm-rails-gae #{version}"
+  rdoc.title = "rails_dm_datastore #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
