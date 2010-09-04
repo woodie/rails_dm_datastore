@@ -12,6 +12,7 @@ class <%= class_name %>
     max = attribute.name.size if attribute.name.size > max
   end -%>
   include DataMapper::Resource
+  storage_names[:default] = "<%= class_name %>"
   
   property :id,<%= " " * (max - 2) %> Serial
 <% Array(attributes).each do |attribute|
